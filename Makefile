@@ -20,12 +20,12 @@ docker-image: $(JDK_TARBALL)
 
 PHONY += push-to-docker
 push-to-docker: docker-image
-	docker push tekii/debian-server-jre:latest
+	docker push tekii/debian-server-jre
 
 PHONY += push-to-google
 push-to-google: docker-image
-	docker tag tekii/jira-service-desk:latest gcr.io/test-teky/jira-service-desk:latest
-	gcloud docker push gcr.io/test-teky/jira-service-desk:latest
+	docker tag debian-server-jre gcr.io/test-teky/debian-server-jre
+	gcloud docker push gcr.io/test-teky/debian-server-jre
 
 PHONY += clean
 clean:
