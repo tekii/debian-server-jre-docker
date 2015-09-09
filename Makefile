@@ -29,12 +29,12 @@ docker-image: $(__PATCHED__)
 
 PHONY += push-to-docker
 push-to-docker: docker-image
-	docker push tekii/debian-server-jre:latest
+	docker push tekii/debian-server-jre
 
 PHONY += push-to-google
 push-to-google: docker-image
-	docker tag tekii/debian-server-jre:latest gcr.io/mrg-teky/debian-server-jre:latest
-	gcloud docker push gcr.io/mrg-teky/debian-server-jre:latest
+	docker tag tekii/debian-server-jre gcr.io/mrg-teky/debian-server-jre
+	gcloud docker push gcr.io/mrg-teky/debian-server-jre
 
 PHONY += clean
 clean:
