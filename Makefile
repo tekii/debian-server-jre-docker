@@ -6,11 +6,26 @@
 #
 # http://download.oracle.com/otn-pub/java/jdk/8u51-b16/server-jre-8u51-linux-x64.tar.gz
 #
-JDK_TARBALL:=server-jre-8u51-linux-x64.tar.gz
-JDK_LOCATION:=http://download.oracle.com/otn-pub/java/jdk/8u51-b16
+VERSION:=8u60
+TARBALL:=server-jre-$(JDK_VERSION)-linux-x64.tar.gz
+LOCATION:=http://download.oracle.com/otn-pub/java/jdk/$(JDK_VERSION)-b27
+INSTALL:=/opt/jdk
+DOCKER_TAG:=tekii/server-jre
 
 __SRC__:=.
 __PATCHED__:=$(__SRC__)/patched
+
+##
+## M4
+##
+M4= $(shell which m4)
+M4_FLAGS= -P \
+	-D __VERSION__=$(VERSION) \
+	-D __DOWNLOAD_URL__=$(LOCATION)/$(TARBALL) \
+	-D __INSTALL__=$(INSTALL) \
+	-D __DOCKER_TAG__=$(DOCKER_TAG)
+
+
 
 $(JDK_TARBALL):
 	wget --header "Cookie: oraclelicense=accept-securebackup-cookie" $(JDK_LOCATION)/$(JDK_TARBALL)
@@ -24,6 +39,7 @@ $(__PATCHED__): $(JDK_TARBALL) $(__SRC__)/ca_01_tekii_com_ar.pem $(__SRC__)/ca_0
 
 PHONY += docker-image $(__PATCHED__)
 docker-image: $(__PATCHED__)
+# 	the -t do the latest trick...
 	docker build -t tekii/debian-server-jre .
 
 
