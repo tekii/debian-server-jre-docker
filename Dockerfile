@@ -16,7 +16,7 @@ RUN mkdir --parents /opt/jdk && \
     apt-get install --assume-yes --no-install-recommends wget ca-certificates && \
     echo "start downloading and decompressing http://download.oracle.com/otn-pub/java/jdk/8u60-b27/server-jre-8u60-linux-x64.tar.gz" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie" -q -O - http://download.oracle.com/otn-pub/java/jdk/8u60-b27/server-jre-8u60-linux-x64.tar.gz | tar -xz --strip=1 -C /opt/jdk && \
-    echo "end start downloading and decompressing." && \
+    echo "end downloading and decompressing." && \
     chown --recursive root:root /opt/jdk && \
     update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100 && \
     apt-get purge --assume-yes wget && \
@@ -25,5 +25,4 @@ RUN mkdir --parents /opt/jdk && \
 
 ENV JAVA_HOME /opt/jdk
 
-RUN update-alternatives --display java
 

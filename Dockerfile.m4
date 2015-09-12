@@ -25,5 +25,4 @@ RUN mkdir --parents __INSTALL__ && \
 
 ENV JAVA_HOME __INSTALL__
 
-RUN update-alternatives --display java
 
