@@ -2,8 +2,8 @@
 # Oracle Server JRE
 #
 
-# 
-FROM google/debian:wheezy
+#
+FROM tekii/debian
 
 MAINTAINER Pablo Jorge Eduardo Rodriguez <pr@tekii.com.ar>
 
@@ -19,10 +19,9 @@ RUN mkdir --parents /opt/jdk && \
     echo "end downloading and decompressing." && \
     chown --recursive root:root /opt/jdk && \
     update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100 && \
+    /opt/jdk/bin/keytool -keystore /opt/jdk/jre/lib/security/cacerts -importcert -alias digicert_ca -file /usr/local/share/ca-certificates/DigiCertCA.crt -storepass changeit -noprompt && \
     apt-get purge --assume-yes wget && \
     apt-get clean autoclean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ENV JAVA_HOME /opt/jdk
-
-
