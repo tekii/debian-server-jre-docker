@@ -3,7 +3,7 @@
 #
 
 #
-FROM tekii/debian
+FROM tekii/debian:wheezy
 
 MAINTAINER Pablo Jorge Eduardo Rodriguez <pr@tekii.com.ar>
 
