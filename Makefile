@@ -11,7 +11,7 @@ TARBALL:=AutoDL?BundleId=220305_d54c1d3a095b4ff2b6607d096fa80163
 LOCATION:=http://javadl.oracle.com/webapps/download
 SHA256:=899d9f09d7c1621a5cce184444b0ba97a8b0391bd85b624ea29f81a759764c55
 INSTALL:=/opt/jdk
-TAG:=gcr.io/mrg-teky/server-jre
+TAG:=gcr.io/mrg-teky/jre
 USER:=root
 GROUP:=root
 
@@ -43,18 +43,14 @@ cloudbuild.yaml: m4/cloudbuild.yaml Makefile
 
 PHONY += image
 image: Dockerfile cloudbuild.yaml
-	docker build --no-cache=false --rm=true --tag $(TAG) .
+	docker build --no-cache=false --rm=true --tag $(TAG):$(VERSION) .
 
-PHONY += push-to-google
-push-to-google: docker-image
-	docker tag $(TAG) gcr.io/mrg-teky/server-jre
-	gcloud docker push gcr.io/mrg-teky/server-jre
-
-PHONY += git-tag git-push
+PHONY += git-tag
 git-tag:
 	-git tag -d $(VERSION)
 	git tag $(VERSION)
 
+PHONY += git-push
 git-push:
 	-git push origin :refs/tags/$(VERSION)
 	git push origin
