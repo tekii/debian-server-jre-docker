@@ -3,3 +3,5 @@ Makefile
 .git
 *.md
 server-jre-8u51-linux-x64.tar.gz.md5
+m4*
+cloudbuild.yaml

@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--no-cache', '--rm=true', '-t', 'gcr.io/$PROJECT_ID/server-jre:8u131', '.']
+
+images: ['gcr.io/$PROJECT_ID/server-jre:8u131']
