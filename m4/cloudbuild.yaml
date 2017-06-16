@@ -1,5 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--no-cache', '--rm=true', '-t', 'gcr.io/$PROJECT_ID/jre:__VERSION__', '.']
+  args: ['build', '--no-cache', '--rm=true', '-t', 'gcr.io/$PROJECT_ID/jre', '.']
+  args: ['tag', 'gcr.io/$PROJECT_ID/jre','gcr.io/$PROJECT_ID/jre:__VERSION__' ]
 
-images: ['gcr.io/$PROJECT_ID/jre:__VERSION__']
+images: ['gcr.io/$PROJECT_ID/jre']
