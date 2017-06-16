@@ -29,10 +29,10 @@ M4_FLAGS= -P \
 	-D __GROUP__=$(GROUP) \
 	-D __TAG__=$(TAG)
 
-$(TARBALL):
+#$(TARBALL):
 #	wget --header "Cookie: oraclelicense=accept-securebackup-cookie" $(LOCATION)/$(TARBALL)
-	echo "$(SHA256) $(TARBALL)" > $(TARBALL).sha256
-	sha256sum --check $@.sha256
+#	echo "$(SHA256) $(TARBALL)" > $(TARBALL).sha256
+#	sha256sum --check $@.sha256
 
 #.SECONDARY
 Dockerfile: Dockerfile.m4 Makefile
