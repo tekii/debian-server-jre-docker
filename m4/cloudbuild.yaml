@@ -1,6 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--no-cache', '--rm=true', '-t', 'gcr.io/$PROJECT_ID/jre', '.']
+  id: A
+- name: 'gcr.io/cloud-builders/docker'
   args: ['tag', 'gcr.io/$PROJECT_ID/jre','gcr.io/$PROJECT_ID/jre:__VERSION__' ]
-
+  waitFor:
+  - A
 images: ['gcr.io/$PROJECT_ID/jre']
